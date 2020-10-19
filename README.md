@@ -1,1 +1,1 @@
-# jwt-api
+# JSON Web Tokens API

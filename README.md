@@ -28,7 +28,7 @@ API serves over POST and DELETE methods. Additional routing may be added as desi
 
 ## Example Request
 <ul>
-  <li>   <strong>POST</strong>http://localhost:3000/user/signUp </a></li>   
+  <li><strong>POST</strong> /user/signUp</li>   
 
     Name:Ultimo   
     Surname:Magnefiso   
@@ -36,3 +36,14 @@ API serves over POST and DELETE methods. Additional routing may be added as desi
     DateOfBirth:01/01/1990   
     Username:aa   
     Password:bb   
+  <li><strong>POST</strong> /user/authenticate</li>   
+   
+    username:aa   
+    password:bb   
+  <li><strong>POST</strong> /user/verify</li>   
+
+    token:addsadasd.hfghfghfg.sfdsdfsd   
+  <li><strong>POST</strong> /user/getUser</li>   
+
+    token:addsadasd.hfghfghfg.sfdsdfsd   
+

@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
@@ -6,6 +7,8 @@ const cors = require("cors");
 require("dotenv").config();
 
 const logger = require("./utils/logger");
+
+mongoose.Promise = global.Promise;
 
 const app = express();
 app.use(cors());
@@ -16,6 +19,11 @@ app.use(
     extended: true,
   })
 );
+
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
 app.get("/", (req, res) => {
   res.send("Welcome my friend...");

@@ -1,7 +1,7 @@
-const JWTLibrary =require("jsonwebtoken");
+const JWTLibrary = require("jsonwebtoken");
 
-module.exports={
-    encode:(user)=>{
+module.exports = {
+    encode: (user) => {
         return user.Name;
     }
 };

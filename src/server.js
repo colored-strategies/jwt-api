@@ -15,9 +15,9 @@ app.use(cors());
 app.use(logger);
 app.use(bodyParser.json());
 app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
+    bodyParser.urlencoded({
+        extended: true,
+    })
 );
 
 mongoose.connect(process.env.MONGO_URI, {
@@ -26,12 +26,12 @@ mongoose.connect(process.env.MONGO_URI, {
 });
 
 app.get("/", (req, res) => {
-  res.send("Welcome my friend...");
+    res.send("Welcome my friend...");
 });
 
 //get product related routing information
 require("./user/user.route")(app);
 
 const listener = app.listen(process.env.PORT || 3000, () => {
-  console.log("Your app is listening on port " + listener.address().port);
+    console.log("Your app is listening on port " + listener.address().port);
 });

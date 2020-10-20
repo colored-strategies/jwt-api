@@ -5,24 +5,34 @@ This is an authentication, token encode & decode API that uses JWT technology an
 ## Running the API
 
 API serves over http://localhost:3000/ by default. Following commands starts up the server.   
-<code>npm run start</code> **OR** <code>yarn start</code>
+<code>npm run dev</code> **OR** <code>yarn dev</code>
 
 ## API Configuration
 
-This API uses two environment variables. **MONGO_URI** used as a MongoDB connection string. **API_URL** used as a base for product thumb and full-size images.    
+This API uses two environment variables. **MONGO_URI** used as a MongoDB connection string. **JWT_SECRET** used as a secret key signature.    
 
-Add **MONGO_URI** & **API_URL** variables to your **.env** file by updating with your own keys.    
+Add **MONGO_URI** & **JWT_SECRET** variables to your **.env** file by updating with your own keys.    
     
 **MONGO_URI**="mongodb://username:password@localhost/testDB?retryWrites=true&w=majority"   
-**API_URL**="http://localhost"    
+**JWT_SECRET**="abc123"    
 
 ## API Routing
 
-API serves over GET, POST, PUT, DELETE methods. Additional routing may be added as desired.
+API serves over POST and DELETE methods. Additional routing may be added as desired.
 
-    GET         /products/seeder        Seed with the initial data   
-    GET         /products               Return all the products   
-    POST        /products/add           Create new product   
-    PUT         /products/update        Update given product's data    
-    DELETE      /products/delete        Delete the product/s within given id array 
+    POST         /user/signUp        Add user data to data source   
+    POST         /user/authenticate  Generate token for given authentication information   
+    POST         /user/verify        Confirm given token is valid   
+    POST         /user/getUser       Decode given token and get user data    
+    DELETE       /user/delete        Delete the data source content (use with caution!) 
 
+## Example Request
+<ul>
+  <li>   <strong>POST</strong>http://localhost:3000/user/signUp </a></li>   
+
+    Name:Ultimo   
+    Surname:Magnefiso   
+    Gender:Female   
+    DateOfBirth:01/01/1990   
+    Username:aa   
+    Password:bb   

@@ -4,6 +4,7 @@ const Token = require("../helper/tokenGenerator");
 module.exports = {
 
     authenticate: async (req, res) => {
+        console.log(req)
         const username = req.body.username;
         const password = req.body.password;
         const user = await Model.findOne({Username: username});
@@ -15,7 +16,11 @@ module.exports = {
         else {
             const token = await Token.encode(user);
             console.log(`Authenticated... ${username}`);
-            res.send({result: "Success", token});
+
+            const {Username, Name, Surname, Gender, DateOfBirth: Birthday, createdDate: AccountDate} = user;
+            const safeData = {Username, Name, Surname, Gender, Birthday, AccountDate};
+
+            res.send({result: "Success", token, user:safeData});
         }
     },
 

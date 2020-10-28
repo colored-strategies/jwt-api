@@ -1,26 +1,26 @@
 const Model = require("./user.model");
 const Token = require("../helper/tokenGenerator");
+const dataFormatter = require("./user.modelView");
 
 module.exports = {
 
     authenticate: async (req, res) => {
-        console.log(req)
         const username = req.body.username;
         const password = req.body.password;
         const user = await Model.findOne({Username: username});
 
-        if (!user) res.send({result: "User not found!", token: null});
+        if (!user) res.send({result: "User not found!", token: null, user: null});
         else if (password !== user.Password)
-            res.send({result: "Password doesn't match with the account, try again!", token: null});
+            res.send({result: "Password doesn't match with the account, try again!", token: null, user: null});
 
         else {
-            const token = await Token.encode(user);
-            console.log(`Authenticated... ${username}`);
+            let responseData = user;
 
-            const {Username, Name, Surname, Gender, DateOfBirth: Birthday, createdDate: AccountDate} = user;
-            const safeData = {Username, Name, Surname, Gender, Birthday, AccountDate};
+            if (!req.body.fullDetail)
+                responseData = dataFormatter(user);
 
-            res.send({result: "Success", token, user:safeData});
+            const token = await Token.encode(responseData);
+            res.send({result: "Success", token, user: responseData});
         }
     },
 

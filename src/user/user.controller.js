@@ -7,6 +7,7 @@ module.exports = {
     authenticate: async (req, res) => {
         const username = req.body.username;
         const password = req.body.password;
+        const details = req.body.fullDetail;
         const user = await Model.findOne({Username: username});
 
         if (!user) res.send({result: "User not found!", token: null, user: null});
@@ -16,14 +17,13 @@ module.exports = {
         else {
             let responseData = user;
 
-            if (!req.body.fullDetail || req.body.fullDetail!=="true")
+            if (!details || details !== "true")
                 responseData = dataFormatter(user);
 
             const token = await Token.encode(responseData);
             res.send({result: "Success", token, user: responseData});
         }
     },
-
 
     decodeToken: async (req, res) => {
         const result = await Token.decode(req.body.token);

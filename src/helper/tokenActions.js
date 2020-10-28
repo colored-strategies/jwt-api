@@ -1,7 +1,4 @@
 const jwt = require("jsonwebtoken");
-const dataFormatter = require("../user/user.modelView");
-
-
 
 module.exports = {
     encode: (user) => {

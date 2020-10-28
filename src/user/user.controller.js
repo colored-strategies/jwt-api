@@ -16,7 +16,7 @@ module.exports = {
         else {
             let responseData = user;
 
-            if (!req.body.fullDetail)
+            if (!req.body.fullDetail || req.body.fullDetail!=="true")
                 responseData = dataFormatter(user);
 
             const token = await Token.encode(responseData);

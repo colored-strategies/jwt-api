@@ -1,5 +1,5 @@
 const Model = require("./user.model");
-const Token = require("../helper/tokenGenerator");
+const Token = require("../helper/tokenActions");
 const dataFormatter = require("./user.modelView");
 
 module.exports = {
@@ -24,15 +24,11 @@ module.exports = {
         }
     },
 
-    verifyToken: async (req, res) => {
-        const result = await Token.verify(req.body.token);
-        res.send({result, token: req.body.token});
-    },
 
     decodeToken: async (req, res) => {
         const result = await Token.decode(req.body.token);
-        if (result.safeData)
-            res.send({result: "Success", user: result.safeData});
+        if (result.user)
+            res.send({result: "Success", user: result.user});
         else
             res.send({result, user: null});
     },

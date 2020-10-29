@@ -22,7 +22,6 @@ API serves over POST and DELETE methods. Additional routing may be added as desi
 
     POST         /user/signUp        Add user data to data source   
     POST         /user/authenticate  Generate token for given authentication information   
-    POST         /user/verify        Confirm given token is valid   
     POST         /user/getUser       Decode given token and get user data    
     DELETE       /user/delete        Delete the data source content (use with caution!) 
 
@@ -39,10 +38,8 @@ API serves over POST and DELETE methods. Additional routing may be added as desi
   <li><strong>POST</strong> /user/authenticate</li>   
    
     username:aa   
-    password:bb   
-  <li><strong>POST</strong> /user/verify</li>   
-
-    token:addsadasd.hfghfghfg.sfdsdfsd   
+    password:bb  
+    fullDetail:false  
   <li><strong>POST</strong> /user/getUser</li>   
 
     token:addsadasd.hfghfghfg.sfdsdfsd   
